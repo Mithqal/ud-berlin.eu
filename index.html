@@ -415,10 +415,18 @@
   /* ── Small tablet / large mobile (≤640px) — collapse to single column ── */
   @media (max-width: 640px) {
     .topbar .lang-switch { display: none; }
-    /* raise the grid floor so the footer climbs up and closes the gap below the hero */
-    .content { padding-bottom: 20vh; }
-    .hero { gap: clamp(12px, 3vw, 18px); }
-    .lede { margin-top: 20px; }
+    /* Stretch hero to fill the full 1fr row so margin-top:auto on lede works */
+    .hero {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: clamp(16px, 5vw, 32px);
+      gap: clamp(8px, 2vw, 14px);
+    }
+    /* Push lede to the bottom of the stretched hero, above the footer */
+    .lede { margin-top: auto; }
     .eyebrow { font-size: 9px; letter-spacing: 0.32em; }
     .bottombar { grid-template-columns: 1fr; text-align: left; gap: 10px; }
     .bottombar .center, .bottombar .right { justify-self: start; }
@@ -429,7 +437,7 @@
 
   /* ── Small mobile (≤400px) — tighten padding and wordmark ── */
   @media (max-width: 400px) {
-    .content { padding: 14px; padding-bottom: 18vh; }
+    .content { padding: 14px; }
     .wordmark { font-size: 9px; letter-spacing: 0.14em; gap: 8px; }
     .wordmark .sep { display: none; }
   }
