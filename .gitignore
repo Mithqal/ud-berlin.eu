@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Vercel
+.vercel/
+
+# Local video (drop bg.mp4 next to index.html to use it, but don't commit large binaries)
+*.mp4
+*.webm
+*.mov
+
+# Temp files from design tool extraction
+design_download*
+ud-berlin-eu/
