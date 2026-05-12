@@ -415,18 +415,17 @@
   /* ── Small tablet / large mobile (≤640px) — collapse to single column ── */
   @media (max-width: 640px) {
     .topbar .lang-switch { display: none; }
-    /* Stretch hero to fill the full 1fr row so margin-top:auto on lede works */
+    /* Stretch hero to fill the full 1fr row, center the group within it */
     .hero {
       align-self: stretch;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      padding-top: clamp(16px, 5vw, 32px);
+      justify-content: center;
       gap: clamp(8px, 2vw, 14px);
     }
-    /* Push lede to the bottom of the stretched hero, above the footer */
-    .lede { margin-top: auto; }
+    /* Airy but not yawning gap between h1 and lede */
+    .lede { margin-top: clamp(24px, 4vh, 48px); }
     .eyebrow { font-size: 9px; letter-spacing: 0.32em; }
     .bottombar { grid-template-columns: 1fr; text-align: left; gap: 10px; }
     .bottombar .center, .bottombar .right { justify-self: start; }
