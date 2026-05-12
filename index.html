@@ -276,25 +276,22 @@
     font-weight: 400;
     line-height: 1.02;
     letter-spacing: -0.01em;
-    font-size: clamp(46px, 9.2vw, 148px);
-    text-wrap: balance;
+    font-size: clamp(24px, 7.5vw, 148px);
     color: var(--ink);
   }
-  .head .de { display: block; }
+  /* Each language always occupies exactly one line */
+  .head .de { display: block; white-space: nowrap; }
+  .head .hu { display: block; white-space: nowrap; color: oklch(0.97 0.012 60); }
   .head .slash {
     display: block;
     font-family: "Inter Tight", sans-serif;
     font-style: normal;
     font-weight: 300;
-    font-size: clamp(14px, 1.2vw, 18px);
+    font-size: clamp(12px, 1.2vw, 18px);
     letter-spacing: 0.5em;
     color: oklch(1 0 0 / .55);
-    margin: clamp(10px, 1.6vw, 22px) 0;
+    margin: clamp(8px, 1.6vw, 22px) 0;
     text-transform: uppercase;
-  }
-  .head .hu {
-    display: block;
-    color: oklch(0.97 0.012 60);
   }
   .head .accent {
     /* very subtle ember underline on the comma break */
@@ -411,12 +408,32 @@
   .corner-tl { top: 50%; left: clamp(14px, 2vw, 30px); transform: translateY(-50%) rotate(-90deg); transform-origin: left center; white-space: nowrap; }
   .corner-br { top: 50%; right: clamp(14px, 2vw, 30px); transform: translateY(-50%) rotate(90deg); transform-origin: right center; white-space: nowrap; }
 
-  /* mobile tightening */
+  /* ── Tablet (≤900px) — bottombar gets tighter before it collapses ── */
+  @media (max-width: 900px) {
+    .bottombar { gap: 14px; font-size: 10px; letter-spacing: 0.16em; }
+    .bottombar .meta { gap: 14px; }
+    .bottombar .right { gap: 14px; }
+    /* "ud-berlin.eu" is redundant chrome at this width */
+    .bottombar .right .domain { display: none; }
+  }
+
+  /* ── Small tablet / large mobile (≤640px) — collapse to single column ── */
   @media (max-width: 640px) {
     .topbar .lang-switch { display: none; }
-    .bottombar { grid-template-columns: 1fr; text-align: left; gap: 12px; }
+    .hero { gap: clamp(8px, 2vw, 14px); }
+    .eyebrow { font-size: 9px; letter-spacing: 0.32em; }
+    .bottombar { grid-template-columns: 1fr; text-align: left; gap: 10px; }
     .bottombar .center, .bottombar .right { justify-self: start; }
+    /* hide left meta entirely — keeps footer uncluttered at small sizes */
+    .bottombar .meta { display: none; }
     .corner-tl, .corner-br { display: none; }
+  }
+
+  /* ── Small mobile (≤400px) — tighten padding and wordmark ── */
+  @media (max-width: 400px) {
+    .content { padding: 14px; }
+    .wordmark { font-size: 9px; letter-spacing: 0.14em; gap: 8px; }
+    .wordmark .sep { display: none; }
   }
 
   /* respect reduced motion */
@@ -498,7 +515,7 @@
         </div>
         <div class="right">
           <a href="mailto:hallo@ud-berlin.eu">hallo@ud-berlin.eu</a>
-          <span>ud-berlin.eu</span>
+          <span class="domain">ud-berlin.eu</span>
         </div>
       </footer>
 
